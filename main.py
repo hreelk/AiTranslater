@@ -1,11 +1,20 @@
-import webbrowser
 import tkinter as tk
+from selenium import webdriver
 
 def open_webpage():
+    # 取得URL
     url = entry.get()
-    webbrowser.open(url)
+    
+    # 創建瀏覽器驅動程式
+    driver = webdriver.Chrome()
+    
+    # 打開網頁
+    driver.get(url)
+    
+    # 啟動主迴圈
+    window.mainloop()
 
-# 建立主視窗
+# 創建視窗
 window = tk.Tk()
 
 # 建立標籤和輸入框
