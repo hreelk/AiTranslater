@@ -13,10 +13,14 @@ def open_webpage():
     driver.get(url)
     # 關閉視窗
     window.destroy()
-    # 使用Selenium尋找特定元素
-    element = driver.find_element(By.ID, "L2")  # 使用適當的定位方式和元素ID
-    selected_text = element.text
-    print(selected_text)  # 印出選取的文字
+    #使用Selenium尋找特定元素
+    #迴圈遍歷每個元素
+    for i in range(1, 104):
+    # 使用元素的 ID 值來定位元素
+        element_id = "L" + str(i)
+        element = driver.find_element(By.ID, element_id)  # 使用適當的定位方式和元素ID
+        selected_text = element.text
+        print(selected_text)  # 印出選取的文字
     
     # 關閉瀏覽器
     driver.quit()
