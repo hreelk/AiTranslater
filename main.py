@@ -1,10 +1,14 @@
 import os
+import subprocess
 import tkinter as tk
 from docx import Document
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import pyautogui
+import time
 
 def open_webpage():
 
@@ -44,11 +48,33 @@ def open_webpage():
     file_path = os.path.join(folder_path, file_name)
     # 儲存 Word 文件
     doc.save(file_path)
-    
     # 關閉瀏覽器
     driver.quit()
     # 關閉視窗
     window.destroy()
+    #以debug模式打開chrome
+    bat_file_path = 'start_chrome_debug.bat'
+    subprocess.call(bat_file_path, shell=True)
+    # 創建 ChromeOptions
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option("debuggerAddress", "localhost:9222")
+    # 創建瀏覽器驅動程式
+    driver = webdriver.Chrome(options=options)
+    # 移動到網站
+    driver.get("https://chat.forefront.ai")
+    print(driver.title)
+    #等待網站開好
+    wait = WebDriverWait(driver, 10)
+    wait.until(EC.presence_of_element_located((By.CLASS_NAME, "text-th-primary-dark")))
+    time.sleep(2)
+    #再輸入框位置點左鍵
+    pyautogui.click(x=2128, y=1972)
+    #輸入
+    hi = "hi"
+    pyautogui.typewrite(hi)
+
+
+
 # 創建視窗
 window = tk.Tk()
 
