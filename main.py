@@ -1,6 +1,7 @@
 import tkinter as tk
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 
 def open_webpage():
     # 取得URL
@@ -15,9 +16,13 @@ def open_webpage():
     window.destroy()
     #使用Selenium尋找特定元素
     #迴圈遍歷每個元素
-    for i in range(1, 104):
+    for i in range(1, 10000):
     # 使用元素的 ID 值來定位元素
         element_id = "L" + str(i)
+        try:
+            element = driver.find_element(By.ID, element_id)
+        except NoSuchElementException:
+            break
         element = driver.find_element(By.ID, element_id)  # 使用適當的定位方式和元素ID
         selected_text = element.text
         print(selected_text)  # 印出選取的文字
