@@ -239,9 +239,6 @@ def translateAllInOnce(file_path, folder_path):
     # 從剪貼簿中獲取文字
     selected_text = pyperclip.paste()
     print(selected_text)
-    ##### 刪除特定文字
-    ####selected_text = selected_text.replace("GPT-3.5", "")
-    ####print(selected_text)
     # 將文字添加到文檔中
     docA.add_paragraph(selected_text)
     # 清空text
@@ -259,22 +256,22 @@ def translateAllInOnce(file_path, folder_path):
     checkanswer(file_path, folder_path, file_name)
 
 def checkanswer(file_path, folder_path, file_name):
-    # 创建新窗口
+    # 創建新窗口
     window = tk.Tk()
-    window.title("满意度调查")
+    window.title("滿意度调查")
     
-    # 创建标签
-    label = tk.Label(window, text="请问您对翻译是否满意？")
+    # 創建標籤
+    label = tk.Label(window, text="翻譯是否滿意？")
     label.pack()
     
-    # 创建文本框
+    # 創建文本框
     text_box = scrolledtext.ScrolledText(window, height=10, width=50)
     text_box.pack()
-    # 读取Word中的内容并显示在文本框中
+    # 讀取Word中的内容並顯示在文本框中
     contentT = pyperclip.paste()
     text_box.insert(tk.END, contentT)
     
-    # 创建按钮回调函数
+    # 創建按紐函數
     def yes_button_clicked():
         window.destroy()
         # 移動到起始位置
@@ -310,17 +307,17 @@ def checkanswer(file_path, folder_path, file_name):
         window.destroy()
         continueTranslate(file_path, folder_path, file_name)
 
-    # 创建按钮
-    yes_button = tk.Button(window, text="满意", command=yes_button_clicked)
+    # 創建按紐
+    yes_button = tk.Button(window, text="滿意", command=yes_button_clicked)
     yes_button.pack()
     
-    no_button = tk.Button(window, text="不满意", command=no_button_clicked)
+    no_button = tk.Button(window, text="不滿意", command=no_button_clicked)
     no_button.pack()
     
     co_button = tk.Button(window, text="繼續翻譯", command=lambda: co_button_clicked (file_path, folder_path, file_name))
     co_button.pack()
 
-    # 运行窗口的主循环
+    # 運行窗口的主循還
     window.mainloop()
 
 def continueTranslate(file_path, folder_path, file_name):
@@ -373,7 +370,7 @@ label2 = tk.Label(window, text="請輸入保存名稱：")
 label2.pack()
 entry2 = tk.Entry(window)
 entry2.pack()
-# 创建按钮回调函数
+# 創建按紐函數
 def button1_clicked():
     open_webpage(1)
 
