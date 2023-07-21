@@ -68,7 +68,7 @@ def translate(file_path, folder_path):
     subprocess.call(bat_file_path, shell=True)
     # 創建 ChromeOptions
     options = webdriver.ChromeOptions()
-    options.add_experimental_option("debuggerAddress", "localhost:9212")
+    options.add_experimental_option("debuggerAddress", "localhost:1782")
     # 創建瀏覽器驅動程式
     print("創建瀏覽器驅動程式")
     driver = webdriver.Chrome(options=options)
